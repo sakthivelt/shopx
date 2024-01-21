@@ -27,7 +27,7 @@ Check out the live demo: [SHOP X](https://shopx-sakthi.web.app/)
 
    ```bash
    git clone https://github.com/sakthivelt/shopx.git
-   cd swap2k23
+   cd shopx
    ```
    
 2. Install dependencies:
