@@ -1,5 +1,6 @@
-import Joi, { date } from "joi";
+import Joi from "joi";
 
+// schemes
 const fetchVoucherSchema = Joi.object({
   vr_no: Joi.string().alphanum().required(),
 });
@@ -12,12 +13,11 @@ const createVoucherSchema = Joi.object({
   ac_amt: Joi.number().required(),
 });
 
+// Validation functions
 export function fetchVoucherValidate(data) {
-  console.log("called");
   return fetchVoucherSchema.validate(data);
 }
 
 export function createVoucherValidate(data) {
-  console.log(data);
   return createVoucherSchema.validate(data);
 }

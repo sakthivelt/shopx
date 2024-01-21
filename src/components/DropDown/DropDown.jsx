@@ -15,7 +15,6 @@ function DropDown({ name, list, value, setValue, idName }) {
         className="outline-appBorder block w-full p-2.5 mb-6 text-sm border-appBorder rounded-lg   focus:border-appColor-light bg-appBg-semilight  placeholder-gray-400 text-white focus:ring-blue-500 "
         onChange={(e) => {
           setValue(e.target.value);
-          console.log(e.target.value);
         }}
         defaultValue={value}
       >

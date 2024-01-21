@@ -11,6 +11,7 @@ function InputBox({
   setValue,
   idName,
   style,
+  disabled,
 }) {
   return (
     <div className={style}>
@@ -31,6 +32,7 @@ function InputBox({
           </div>
         )}
         <input
+          disabled={disabled}
           name={idName}
           type="text"
           id="input-group-1"

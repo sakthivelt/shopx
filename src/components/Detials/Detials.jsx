@@ -1,5 +1,17 @@
 import React, { useEffect, useState } from "react";
-import generatePDF, { usePDF, Margin, Resolution } from "react-to-pdf";
+
+// components
+import InputBox from "../InputBox/InputBox";
+import Button from "../Button/Button";
+import Table from "../Table/Table";
+import Invoice from "../Invoice/Invoice";
+
+import _ from "lodash";
+import generatePDF from "react-to-pdf";
+import date from "date-and-time";
+import toast from "react-hot-toast";
+
+// Redux
 import {
   addProduct,
   clearVoucher,
@@ -7,28 +19,20 @@ import {
   updateVoucherTotel,
 } from "../../redux";
 import { connect, useSelector } from "react-redux";
-import date from "date-and-time";
 import { useDispatch } from "react-redux";
-// components
-import InputBox from "../InputBox/InputBox";
-import Button from "../Button/Button";
-import Table from "../Table/Table";
-
 import { productValidate } from "../../validation/productValidation";
+import { clearProduct } from "../../redux/products/productsActions";
+
+// API & Validation
+import insertMultiple from "../../API/insertMultiple";
+import { createVoucherValidate } from "../../validation/headerValidation";
 
 // icons
 import rupesIcon from "../../assets/icons/rupes.svg";
-import deleteIcon from "../../assets/icons/delete.svg";
 import productIcon from "../../assets/icons/product.svg";
 import qrCodeIcon from "../../assets/icons/qrCode.svg";
 import listIcon from "../../assets/icons/list.svg";
 import descriptionIcon from "../../assets/icons/description.svg";
-import toast from "react-hot-toast";
-import { createVoucherValidate } from "../../validation/headerValidation";
-import _ from "lodash";
-import insertMultiple from "../../API/insertMultiple";
-import { clearProduct } from "../../redux/products/productsActions";
-import Invoice from "../Invoice/Invoice";
 
 function Detials({ addProducts, product }) {
   const [item_name, setitem_name] = useState("");
@@ -39,12 +43,8 @@ function Detials({ addProducts, product }) {
   const [totel, setTotel] = useState(0);
   const [pdfRef, setpdfRef] = useState();
 
-  console.log(pdfRef);
-
+  // Redux
   const { user } = useSelector((state) => state.voucher);
-  console.log(user);
-  // console.log(product);
-
   const dispatch = useDispatch();
 
   const clearInput = () => {
@@ -68,7 +68,6 @@ function Detials({ addProducts, product }) {
       const ans = data.reduce((total, currentValue) => {
         return currentValue.qty * currentValue.rate + total;
       }, 0);
-      console.log("calculate dispatched");
       dispatch(updateVoucherTotel(ans));
       return ans;
     }
@@ -100,7 +99,6 @@ function Detials({ addProducts, product }) {
 
       toast.success("Item Added");
       calculateTotal(product);
-      // console.log(product);
       clearInput();
     }
   };
@@ -113,7 +111,7 @@ function Detials({ addProducts, product }) {
       vr_date: user.vr_date,
       ac_amt: user.ac_amt,
     });
-    console.log(user, validateResult);
+
     if (_.isEmpty(user) || validateResult.error)
       return toast.error("please add the Voucher detials");
 
@@ -130,13 +128,13 @@ function Detials({ addProducts, product }) {
       },
       detail_table: product,
     };
+
     const result = insertMultiple(data);
     toast.promise(result, {
       loading: "hold on a moment ",
       success: "saved",
       error: "server error , try againg",
     });
-    console.log(result);
   };
 
   const handelNew = () => {
@@ -155,40 +153,40 @@ function Detials({ addProducts, product }) {
         <InputBox
           style={"col-span-2"}
           name={"Item Name"}
-          idName={"user_name"}
-          placeholder={"ex: sakthi"}
+          idName={"item_name"}
+          placeholder={"ex: apple watch"}
           icon={productIcon}
           value={item_name}
           setValue={setitem_name}
         />
         <InputBox
           name={"Item Code"}
-          idName={"user_name"}
-          placeholder={"ex: sakthi"}
+          idName={"item_code"}
+          placeholder={"ex: 234XX"}
           icon={qrCodeIcon}
           value={item_code}
           setValue={setitem_code}
         />
         <InputBox
           name={"QTY"}
-          idName={"user_name"}
-          placeholder={"ex: sakthi"}
+          idName={"Qty"}
+          placeholder={"ex: 5"}
           icon={listIcon}
           value={qty}
           setValue={setqty}
         />
         <InputBox
           name={"rate"}
-          idName={"user_name"}
-          placeholder={"ex: sakthi"}
+          idName={"rate"}
+          placeholder={"ex: 350"}
           icon={rupesIcon}
           value={rate}
           setValue={setrate}
         />
         <InputBox
           name={"description"}
-          idName={"user_name"}
-          placeholder={"ex: sakthi"}
+          idName={"description"}
+          placeholder={"ex: about the product "}
           icon={descriptionIcon}
           value={description}
           setValue={setDescription}
@@ -214,16 +212,12 @@ function Detials({ addProducts, product }) {
             <div>
               <Button
                 onClick={() => {
-                  console.log(pdfRef);
                   generatePDF(pdfRef);
                 }}
               >
                 Print
               </Button>
             </div>
-            {/* <div>
-              <Button>Delete </Button>
-            </div> */}
           </div>
           <div className="card flex flex-col justify-evenly items-center">
             <h1 className="text-2xl">totel</h1>

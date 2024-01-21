@@ -1,5 +1,6 @@
 import Joi from "joi";
 
+// schemes
 const productSchema = Joi.object({
   item_name: Joi.string().max(200).required(),
   item_code: Joi.string().max(20).required(),
@@ -8,7 +9,7 @@ const productSchema = Joi.object({
   description: Joi.string().max(3000).required(),
 });
 
+// validation functions
 export function productValidate(data) {
-  console.log("called");
   return productSchema.validate(data);
 }

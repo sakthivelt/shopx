@@ -11,7 +11,6 @@ const initialUserState = {
 export function voucherReducer(state = initialUserState, action) {
   switch (action.type) {
     case CLEAR_VOUCHER: {
-      console.log("clear user..");
       return { user: {} };
     }
     case ADD_VOUCHER: {

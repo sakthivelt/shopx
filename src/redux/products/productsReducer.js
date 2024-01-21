@@ -30,9 +30,7 @@ export default function productsReducer(state = initialState, action) {
         state.products.filter((item) => {
           return item.srNo != action.payload;
         });
-      // console.log("ans : ", result);
-      // console.log(state);
-      // console.log(action);
+
       return {
         products: result,
       };

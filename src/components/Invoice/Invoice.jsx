@@ -1,17 +1,14 @@
 import React, { useRef } from "react";
 import { useSelector } from "react-redux";
 import date from "date-and-time";
-import { Margin, usePDF } from "react-to-pdf";
-// import { Margin, usePDF } from "react-to-pdf";
 
 export default function Invoice({ setpdfRef, className }) {
+  // redux
   const { products } = useSelector((state) => state.productsReducer);
   const { user } = useSelector((state) => state.voucher);
+
   const targetRef = useRef();
-
   setpdfRef(targetRef);
-
-  console.log(products, user);
 
   return (
     <div
@@ -24,12 +21,6 @@ export default function Invoice({ setpdfRef, className }) {
             <div className="card bg-white text-black p-6">
               <div className="flex justify-between">
                 <div>
-                  <img
-                    className="h-6"
-                    src="assets/images/logo-dark.png"
-                    alt=""
-                  />
-
                   <h1 className="mt-2 text-lg md:text-xl font-semibold text-black">
                     SHOP X
                   </h1>

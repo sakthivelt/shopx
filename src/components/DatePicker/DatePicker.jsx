@@ -1,10 +1,8 @@
 import React from "react";
 import date from "date-and-time";
-import CustomDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import dateIcon from "../../assets/icons/calendar.svg";
 
-function DatePicker({ className, value, setValue, name }) {
+function DatePicker({ className, value, setValue, name, id }) {
   return (
     <div className="mt-[-20px] w-full">
       <label
@@ -15,8 +13,8 @@ function DatePicker({ className, value, setValue, name }) {
       </label>
       <input
         type="date"
-        name=""
-        id=""
+        name={name}
+        id={id}
         value={date.format(value, "YYYY-MM-DD")}
         onChange={(e) => {
           setValue(date.parse(e.target.value, "YYYY-MM-DD"));
