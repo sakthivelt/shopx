@@ -2,7 +2,7 @@
 
 ## Demo
 
-Check out the live demo: [SWAP 2K23 Demo](https://shopx-sakthi.web.app/)
+Check out the live demo: [SHOP X](https://shopx-sakthi.web.app/)
 
 ## Table of Contents
 
