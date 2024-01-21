@@ -13,7 +13,7 @@ Check out the live demo: [SWAP 2K23 Demo](https://shopx-sakthi.web.app/)
 ## Features
 
 
-- **React**: Utilized Next js ⚛️ for building a dynamic and responsive user interface.
+- **React**: Utilized Vite ⚛️ for building a dynamic and responsive user interface.
 
 - **Tailwind CSS**: Styled the application using Tailwind CSS 🎨, ensuring a sleek and modern design.
   
