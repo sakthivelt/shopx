@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  color: #ffffff;
+}
+
+*::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #161616;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  background-color: #161616;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgb(155, 161, 166);
+  border-radius: 20px;
+}
+
+.react-datepicker-popper {
+  z-index: 9999 !important;
+}
+
+a {
+  cursor: pointer;
+}
